@@ -7,14 +7,25 @@ function App() {
   const [reps, setReps] = useState("");
   const [weight, setWeight] = useState("");
 
+  // Load saved workouts
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem("workouts"));
+    if (saved) setWorkouts(saved);
+  }, []);
+
+  // Save workouts
+  useEffect(() => {
+    localStorage.setItem("workouts", JSON.stringify(workouts));
+  }, [workouts]);
+
   const addWorkout = () => {
     if (!exercise || !sets || !reps || !weight) return;
 
     const newWorkout = {
       exercise,
-      sets,
-      reps,
-      weight,
+      sets: Number(sets),
+      reps: Number(reps),
+      weight: Number(weight),
       date: new Date().toLocaleString(),
     };
 
@@ -25,6 +36,13 @@ function App() {
     setReps("");
     setWeight("");
   };
+
+  // Progress metrics
+  const totalWorkouts = workouts.length;
+  const totalWeight = workouts.reduce(
+    (sum, w) => sum + w.weight * w.sets * w.reps,
+    0
+  );
 
   return (
     <div style={{ padding: "20px" }}>
@@ -38,6 +56,10 @@ function App() {
       <input placeholder="Weight (kg)" value={weight} onChange={(e) => setWeight(e.target.value)} />
 
       <button onClick={addWorkout}>Add Workout</button>
+
+      <h2>Progress</h2>
+      <p>Total Workouts: {totalWorkouts}</p>
+      <p>Total Weight Lifted: {totalWeight} kg</p>
 
       <h2>Workout History</h2>
       <ul>
