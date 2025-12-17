@@ -20,12 +20,14 @@ body {
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
 /* Headings */
 h1 {
   text-align: center;
-  margin-bottom: 30px;
   color: #2c3e50;
 }
 
@@ -36,7 +38,9 @@ h2 {
 
 /* Sections */
 section {
-  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   padding-bottom: 20px;
   border-bottom: 1px solid #eaeaea;
 }
@@ -45,7 +49,6 @@ section {
 input {
   width: 100%;
   padding: 10px;
-  margin-bottom: 12px;
   border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 14px;
@@ -60,6 +63,7 @@ button {
   border-radius: 6px;
   cursor: pointer;
   font-size: 15px;
+  transition: background 0.3s;
 }
 
 button:hover {
@@ -69,6 +73,7 @@ button:hover {
 /* Lists */
 ul {
   list-style: none;
+  padding-left: 0;
 }
 
 li {
@@ -77,6 +82,7 @@ li {
   margin-bottom: 10px;
   border-radius: 6px;
   border-left: 4px solid #2ecc71;
+  word-wrap: break-word; /* Prevent long text overflow */
 }
 
 /* Small text */
@@ -90,10 +96,37 @@ small {
   margin-top: 10px;
 }
 
-/* Responsive */
+/* Responsive inputs/buttons for mobile */
 @media (max-width: 600px) {
   .app {
     margin: 20px;
     padding: 20px;
+  }
+
+  section {
+    gap: 10px;
+  }
+
+  input, button {
+    width: 100%;
+    font-size: 14px;
+  }
+}
+
+/* Optional: wider layout for tablets/desktops */
+@media (min-width: 601px) {
+  section {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+
+  input {
+    flex: 1 1 150px;
+  }
+
+  button {
+    flex: 0 0 auto;
   }
 }
