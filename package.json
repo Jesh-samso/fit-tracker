@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "cd fit-tracker && npm run dev",
+    "build": "cd fit-tracker && npm run build",
+    "start": "cd fit-tracker && npm run preview"
+  },
+  "dependencies": {
+    "react-router-dom": "^7.10.1"
+  }
+}
